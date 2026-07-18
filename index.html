@@ -6,22 +6,21 @@
 <title>Alvin Salazar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --deep:    #0B1F16;
-    --moss:    #1F3D2C;
-    --canopy:  #3E6B4C;
-    --gold:    #D4A73A;
-    --cream:   #EDE7D6;
-    --cream-dim: rgba(237,231,214,0.55);
+    --blush:   #F3C6D9;
+    --lilac:   #C9B6E0;
+    --dusk:    #8E8FC7;
+    --plum:    #2E1A38;
+    --cream:   #FFF8F2;
+    --cream-dim: rgba(255,248,242,0.7);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body {
     height: 100%;
-    background: var(--deep);
     overflow: hidden;
   }
 
@@ -30,194 +29,188 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Manrope', sans-serif;
-    color: var(--cream);
+    font-family: 'Quicksand', sans-serif;
+    color: var(--plum);
+    background: linear-gradient(180deg, #C9B6E0 0%, #E3B8CE 45%, #F3C6D9 75%, #FBD9C9 100%);
   }
 
-  /* ── Layered canopy silhouette (back to front) ── */
-  .canopy {
+  /* ── Soft sunset haze blobs ── */
+  .haze {
     position: absolute;
-    inset: 0;
-    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.55;
+    animation: float 16s ease-in-out infinite;
   }
-  .canopy-layer {
+  .haze-1 { width: 420px; height: 420px; background: #F7D8E6; top: -8%; left: -10%; animation-delay: 0s; }
+  .haze-2 { width: 360px; height: 360px; background: #B8A6DE; bottom: -12%; right: -8%; animation-delay: -5s; }
+  .haze-3 { width: 260px; height: 260px; background: #FCE3C9; bottom: 10%; left: 12%; animation-delay: -9s; opacity: 0.4; }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(20px, -16px) scale(1.05); }
+  }
+
+  /* ── Drifting hearts ── */
+  .heart {
     position: absolute;
-    bottom: -10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 160%;
-    height: 65%;
-  }
-  .canopy-layer svg { width: 100%; height: 100%; display: block; }
-  .canopy-1 { opacity: 0.35; filter: blur(1px); animation: sway1 22s ease-in-out infinite; }
-  .canopy-2 { opacity: 0.55; bottom: -14%; animation: sway2 17s ease-in-out infinite; }
-  .canopy-3 { opacity: 0.9;  bottom: -18%; animation: sway1 13s ease-in-out infinite reverse; }
-
-  @keyframes sway1 {
-    0%, 100% { transform: translateX(-50%) rotate(0deg); }
-    50%      { transform: translateX(-51%) rotate(0.4deg); }
-  }
-  @keyframes sway2 {
-    0%, 100% { transform: translateX(-50%) rotate(0deg); }
-    50%      { transform: translateX(-49%) rotate(-0.3deg); }
-  }
-
-  /* ── Light shafts ── */
-  .light-shaft {
-    position: absolute;
-    top: -20%;
-    width: 140px;
-    height: 140%;
-    background: linear-gradient(180deg, rgba(212,167,58,0.16), rgba(212,167,58,0) 70%);
-    transform-origin: top center;
-    filter: blur(6px);
-    animation: drift 14s ease-in-out infinite;
-  }
-  .shaft-1 { left: 18%; transform: rotate(8deg);  animation-delay: 0s; }
-  .shaft-2 { left: 46%; transform: rotate(-5deg); width: 200px; animation-delay: -5s; }
-  .shaft-3 { left: 72%; transform: rotate(11deg); width: 100px; animation-delay: -9s; }
-
-  @keyframes drift {
-    0%, 100% { opacity: 0.55; transform: rotate(var(--r, 8deg)) translateX(0); }
-    50%      { opacity: 0.9;  transform: rotate(var(--r, 8deg)) translateX(12px); }
-  }
-
-  /* ── Drifting leaves ── */
-  .leaf {
-    position: absolute;
-    top: -5%;
-    width: 9px;
-    height: 9px;
-    background: var(--gold);
-    border-radius: 0 60% 0 60%;
-    opacity: 0.7;
+    top: -6%;
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
     animation: fall linear infinite;
+    user-select: none;
   }
   @keyframes fall {
     0%   { transform: translate(0, 0) rotate(0deg);   opacity: 0; }
-    10%  { opacity: 0.7; }
-    90%  { opacity: 0.5; }
-    100% { transform: translate(40px, 115vh) rotate(340deg); opacity: 0; }
+    12%  { opacity: 0.8; }
+    88%  { opacity: 0.4; }
+    100% { transform: translate(30px, 112vh) rotate(200deg); opacity: 0; }
   }
 
-  /* ── Content ── */
-  .content {
+  /* ── Polaroid card ── */
+  .polaroid {
     position: relative;
     z-index: 2;
+    background: var(--cream);
+    padding: 26px 26px 60px;
+    width: min(310px, 78vw);
+    box-shadow: 0 20px 50px rgba(46,26,56,0.28), 0 4px 12px rgba(46,26,56,0.15);
+    transform: rotate(-3deg);
+    animation: settle 1.2s cubic-bezier(.2,.9,.3,1) 0.15s both;
+  }
+
+  @keyframes settle {
+    from { opacity: 0; transform: rotate(-3deg) translateY(24px) scale(0.96); }
+    to   { opacity: 1; transform: rotate(-3deg) translateY(0) scale(1); }
+  }
+
+  .photo-area {
+    aspect-ratio: 1 / 1;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(255,255,255,0.5), transparent 45%),
+      linear-gradient(160deg, #D9C6EA 0%, #EFC3D6 55%, #F8D9C4 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 14px;
+  }
+
+  /* subtle silhouette scribble, purely decorative — no copyrighted imagery */
+  .scribble-heart {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 26px;
+    height: 26px;
+    opacity: 0.5;
+  }
+
+  .name-cursive {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: clamp(2.1rem, 8vw, 2.7rem);
+    color: var(--plum);
     text-align: center;
-    padding: 0 24px;
-  }
-
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 18px;
-    opacity: 0;
-    animation: rise 1s ease-out 0.2s forwards;
-  }
-
-  h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: clamp(2.6rem, 9vw, 5rem);
-    letter-spacing: -0.01em;
     line-height: 1;
-    color: var(--cream);
-    opacity: 0;
-    animation: rise 1.1s ease-out 0.4s forwards;
   }
 
-  .tagline {
-    margin-top: 20px;
-    font-size: 14px;
-    color: var(--cream-dim);
+  .caption {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 12.5px;
     font-weight: 500;
+    color: #6B5A78;
     letter-spacing: 0.2px;
-    opacity: 0;
-    animation: rise 1s ease-out 0.7s forwards;
+    font-style: italic;
   }
 
-  .divider {
-    width: 36px;
-    height: 1px;
-    background: var(--canopy);
-    margin: 26px auto;
+  .tape {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 74px;
+    height: 26px;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.7);
+    box-shadow: 0 3px 6px rgba(46,26,56,0.12);
+  }
+
+  .contact-row {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--cream-dim);
+    position: relative;
+    z-index: 2;
     opacity: 0;
     animation: rise 1s ease-out 0.9s forwards;
   }
-
-  .contact {
-    font-size: 12px;
-    color: var(--cream-dim);
-    opacity: 0;
-    animation: rise 1s ease-out 1.1s forwards;
-  }
-  .contact a {
-    color: var(--gold);
+  .contact-row a {
+    color: var(--plum);
+    background: rgba(255,255,255,0.55);
+    padding: 3px 10px;
+    border-radius: 20px;
     text-decoration: none;
-    border-bottom: 1px solid rgba(212,167,58,0.35);
-    transition: border-color 0.2s ease;
+    font-weight: 600;
   }
-  .contact a:hover { border-color: var(--gold); }
 
   @keyframes rise {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  .stack {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .canopy-1, .canopy-2, .canopy-3, .light-shaft, .leaf { animation: none !important; }
-    .eyebrow, h1, .tagline, .divider, .contact { animation: none !important; opacity: 1 !important; transform: none !important; }
+    .haze, .heart { animation: none !important; }
+    .polaroid, .contact-row { animation: none !important; opacity: 1 !important; transform: rotate(-3deg) !important; }
   }
 </style>
 </head>
 <body>
 
-  <div class="canopy">
-    <div class="canopy-layer canopy-1">
-      <svg viewBox="0 0 1600 500" preserveAspectRatio="none">
-        <path d="M0,500 L0,260 Q80,180 160,240 Q220,140 300,220 Q380,120 460,230 Q540,150 620,240 Q700,160 780,235 Q860,150 940,230 Q1020,160 1100,240 Q1180,150 1260,230 Q1340,160 1420,235 Q1500,170 1600,240 L1600,500 Z" fill="#1F3D2C"/>
-      </svg>
-    </div>
-    <div class="canopy-layer canopy-2">
-      <svg viewBox="0 0 1600 500" preserveAspectRatio="none">
-        <path d="M0,500 L0,300 Q100,220 190,290 Q260,190 350,280 Q430,200 520,285 Q600,210 690,280 Q770,200 860,285 Q940,210 1030,280 Q1110,200 1200,285 Q1280,210 1370,280 Q1460,220 1600,290 L1600,500 Z" fill="#2A4E38"/>
-      </svg>
-    </div>
-    <div class="canopy-layer canopy-3">
-      <svg viewBox="0 0 1600 500" preserveAspectRatio="none">
-        <path d="M0,500 L0,350 Q90,300 170,340 Q240,280 330,335 Q400,290 490,335 Q560,290 650,335 Q720,290 810,335 Q880,290 970,335 Q1040,290 1130,335 Q1200,290 1290,335 Q1360,290 1450,335 Q1520,300 1600,340 L1600,500 Z" fill="#0F2A1C"/>
-      </svg>
-    </div>
-  </div>
+  <div class="haze haze-1"></div>
+  <div class="haze haze-2"></div>
+  <div class="haze haze-3"></div>
 
-  <div class="light-shaft shaft-1" style="--r:8deg"></div>
-  <div class="light-shaft shaft-2" style="--r:-5deg"></div>
-  <div class="light-shaft shaft-3" style="--r:11deg"></div>
+  <div class="stack">
+    <div class="polaroid">
+      <div class="tape"></div>
+      <div class="photo-area">
+        <svg class="scribble-heart" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 27C16 27 2 18.5 2 9.5C2 4.8 5.6 2 9.4 2C12.3 2 14.7 3.8 16 6.3C17.3 3.8 19.7 2 22.6 2C26.4 2 30 4.8 30 9.5C30 18.5 16 27 16 27Z" stroke="#2E1A38" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <div class="name-cursive">Alvin Salazar</div>
+      </div>
+      <div class="caption">pretty, sad, still building something.</div>
+    </div>
 
-  <div class="content">
-    <div class="eyebrow">Est. 2026</div>
-    <h1>Alvin Salazar</h1>
-    <div class="tagline">This corner of the forest is still growing.</div>
-    <div class="divider"></div>
-    <div class="contact">Reach me at <a href="mailto:asalazar@usc.edu.ph">asalazar@usc.edu.ph</a></div>
+    <div class="contact-row">
+      <a href="mailto:asalazar@usc.edu.ph">asalazar@usc.edu.ph</a>
+    </div>
   </div>
 
   <script>
-    // Scatter a handful of drifting leaves at randomized positions/timings
-    const leafCount = 14;
-    const body = document.body;
-    for (let i = 0; i < leafCount; i++) {
-      const leaf = document.createElement('div');
-      leaf.className = 'leaf';
-      leaf.style.left = Math.random() * 100 + 'vw';
-      leaf.style.animationDuration = (9 + Math.random() * 8) + 's';
-      leaf.style.animationDelay = (Math.random() * 14) + 's';
-      leaf.style.background = Math.random() > 0.5 ? '#D4A73A' : '#4A7C5C';
-      body.appendChild(leaf);
+    const hearts = ['♡','❀','✿'];
+    const count = 16;
+    for (let i = 0; i < count; i++) {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.fontSize = (10 + Math.random() * 10) + 'px';
+      h.style.animationDuration = (10 + Math.random() * 9) + 's';
+      h.style.animationDelay = (Math.random() * 14) + 's';
+      document.body.appendChild(h);
     }
   </script>
 
