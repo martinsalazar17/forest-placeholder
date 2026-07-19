@@ -51,20 +51,14 @@
     gap: 22px;
   }
 
-  .monogram {
+  .headshot {
     flex: none;
-    width: 64px;
-    height: 64px;
+    width: 84px;
+    height: 84px;
     border-radius: 50%;
-    border: 1.5px solid var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--gold);
-    letter-spacing: 1px;
+    border: 2px solid var(--gold);
+    object-fit: cover;
+    object-position: center 15%;
   }
 
   .header-text h1 {
@@ -232,7 +226,7 @@
 
   <header>
     <div class="header-inner">
-      <div class="monogram">AGS</div>
+      <img class="headshot" src="photo.jpg" alt="Alvin G. Salazar">
       <div class="header-text">
         <h1>Alvin G. Salazar</h1>
         <div class="role-line">Accounts Receivable – Others · Finance Division, University of San Carlos</div>
