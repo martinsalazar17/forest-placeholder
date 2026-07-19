@@ -6,12 +6,13 @@
 <title>Alvin G. Salazar — Accounts Receivable, University of San Carlos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --forest:   #1B3A2B;
+    --forest:   #17301F;
     --forest-2: #234A37;
     --gold:     #C9A227;
+    --gold-lt:  #E4C55E;
     --cream:    #FAF7F0;
     --paper:    #FFFFFF;
     --ink:      #24261F;
@@ -20,77 +21,172 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'Inter', sans-serif;
     background: var(--cream);
     color: var(--ink);
     line-height: 1.6;
+    overflow-x: hidden;
   }
 
-  .wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-  }
-
-  /* ── HEADER ── */
-  header {
-    background: var(--forest);
-    color: var(--cream);
-    padding: 56px 24px 44px;
-  }
-
-  .header-inner {
-    max-width: 760px;
-    margin: 0 auto;
+  /* ══════════ HERO ══════════ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 22px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 40px 24px;
   }
 
-  .headshot {
-    flex: none;
-    width: 84px;
-    height: 84px;
-    border-radius: 50%;
-    border: 2px solid var(--gold);
+  .hero-bg {
+    position: absolute;
+    inset: -6%;
+    background-image: url('photo.jpg');
+    background-size: cover;
+    background-position: center 20%;
+    filter: blur(38px) brightness(0.42) saturate(1.15);
+    transform: scale(1.15);
+    z-index: 0;
+    will-change: transform;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(23,48,31,0.55) 0%, rgba(23,48,31,0.75) 60%, var(--cream) 100%);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 640px;
+  }
+
+  .hero-photo-frame {
+    width: 190px;
+    height: 236px;
+    margin: 0 auto 26px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid rgba(228,197,94,0.55);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+    animation: heroInPhoto 0.9s cubic-bezier(.2,.8,.3,1) 0.15s forwards;
+  }
+  .hero-photo-frame img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    object-position: center 15%;
+    object-position: center 12%;
   }
 
-  .header-text h1 {
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-lt);
+    font-weight: 600;
+    margin-bottom: 14px;
+    opacity: 0;
+    animation: heroIn 0.9s ease-out 0.35s forwards;
+  }
+
+  .hero h1 {
     font-family: 'Fraunces', serif;
     font-weight: 500;
-    font-size: clamp(1.7rem, 5vw, 2.3rem);
+    font-size: clamp(2.1rem, 6vw, 3.1rem);
+    color: var(--cream);
     letter-spacing: -0.01em;
-    line-height: 1.15;
+    opacity: 0;
+    animation: heroIn 0.9s ease-out 0.5s forwards;
   }
 
-  .role-line {
-    margin-top: 6px;
-    font-size: 14px;
-    color: rgba(250,247,240,0.8);
+  .hero-role {
+    margin-top: 10px;
+    font-size: 14.5px;
+    color: rgba(250,247,240,0.82);
     font-weight: 500;
+    opacity: 0;
+    animation: heroIn 0.9s ease-out 0.65s forwards;
   }
 
-  .contact-row {
-    max-width: 760px;
-    margin: 26px auto 0;
+  .hero-tagline {
+    margin-top: 18px;
+    font-size: 15px;
+    color: rgba(250,247,240,0.7);
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+    opacity: 0;
+    animation: heroIn 0.9s ease-out 0.8s forwards;
+  }
+
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes heroInPhoto {
+    from { opacity: 0; transform: translateY(16px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: rgba(250,247,240,0.6);
+    font-size: 20px;
+    animation: bob 2.2s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translate(-50%, 0); }
+    50%      { transform: translate(-50%, 8px); }
+  }
+
+  /* ══════════ SIDE NAV DOTS ══════════ */
+  .dot-nav {
+    position: fixed;
+    right: 26px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px 22px;
-    font-size: 12.5px;
-    color: rgba(250,247,240,0.88);
+    flex-direction: column;
+    gap: 14px;
   }
-  .contact-row a { color: var(--gold); text-decoration: none; }
-  .contact-row a:hover { text-decoration: underline; }
-  .contact-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot-nav button {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(23,48,31,0.22);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.25s ease;
+  }
+  .dot-nav button.active {
+    background: var(--gold);
+    transform: scale(1.5);
+  }
+  @media (max-width: 720px) { .dot-nav { display: none; } }
 
-  /* ── SECTIONS ── */
-  section { margin-top: 46px; }
+  /* ══════════ SECTIONS ══════════ */
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  section.block { padding: 70px 0; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   h2.section-title {
     font-family: 'Fraunces', serif;
@@ -102,154 +198,123 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
   }
   h2.section-title::after {
     content: '';
     flex: 1;
     height: 1px;
     background: linear-gradient(90deg, var(--gold), var(--line) 70%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s ease 0.2s;
   }
+  .reveal.visible h2.section-title::after { transform: scaleX(1); }
 
-  .summary {
-    font-size: 15px;
-    color: var(--ink-dim);
-    max-width: 66ch;
-  }
+  .summary { font-size: 15.5px; color: var(--ink-dim); max-width: 62ch; }
 
-  /* ── EXPERIENCE ── */
   .exp-card {
     background: var(--paper);
     border: 1px solid var(--line);
     border-left: 3px solid var(--gold);
-    border-radius: 4px;
-    padding: 22px 24px;
+    border-radius: 6px;
+    padding: 24px 26px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .exp-title {
-    font-family: 'Fraunces', serif;
-    font-size: 17px;
-    font-weight: 500;
-    color: var(--forest);
-  }
-  .exp-org {
-    font-size: 13px;
-    color: var(--ink-dim);
-    margin-top: 2px;
-  }
-  .exp-meta {
-    font-size: 11.5px;
-    color: var(--gold);
-    font-weight: 600;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-    margin-top: 8px;
-  }
-  .exp-desc {
-    margin-top: 12px;
-    font-size: 14px;
-    color: var(--ink-dim);
-  }
+  .exp-card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(23,48,31,0.08); }
+  .exp-title { font-family: 'Fraunces', serif; font-size: 17.5px; font-weight: 500; color: var(--forest); }
+  .exp-org { font-size: 13px; color: var(--ink-dim); margin-top: 2px; }
+  .exp-meta { font-size: 11.5px; color: var(--gold); font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 10px; }
+  .exp-desc { margin-top: 14px; font-size: 14px; color: var(--ink-dim); }
   .exp-desc ul { padding-left: 18px; margin-top: 8px; }
-  .exp-desc li { margin-bottom: 6px; }
+  .exp-desc li { margin-bottom: 7px; }
 
-  /* ── PROJECTS ── */
-  .project-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
+  .project-grid { display: flex; flex-direction: column; gap: 16px; }
   .project-card {
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 18px 22px;
+    border-radius: 6px;
+    padding: 20px 24px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
-  .project-name {
-    font-family: 'Fraunces', serif;
-    font-size: 15.5px;
-    font-weight: 500;
-    color: var(--forest);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(23,48,31,0.08);
+    border-color: var(--gold);
   }
-  .project-tag {
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    background: var(--forest);
-    color: var(--gold);
-    padding: 2px 8px;
-    border-radius: 20px;
-  }
-  .project-desc {
-    margin-top: 8px;
-    font-size: 13.5px;
-    color: var(--ink-dim);
-  }
+  .project-name { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; color: var(--forest); display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+  .project-tag { font-size: 9.5px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; background: var(--forest); color: var(--gold-lt); padding: 3px 9px; border-radius: 20px; }
+  .project-desc { margin-top: 9px; font-size: 13.5px; color: var(--ink-dim); }
 
-  /* ── SKILLS ── */
-  .skills-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 9px;
-  }
+  .skills-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
   .skill-pill {
-    font-size: 12.5px;
-    font-weight: 500;
-    color: var(--forest);
-    background: var(--paper);
-    border: 1px solid var(--line);
-    padding: 7px 14px;
-    border-radius: 20px;
+    font-size: 12.5px; font-weight: 500; color: var(--forest);
+    background: var(--paper); border: 1px solid var(--line);
+    padding: 8px 15px; border-radius: 20px;
+    transition: all 0.2s ease;
   }
+  .skill-pill:hover { border-color: var(--gold); background: #FFFBF0; transform: translateY(-2px); }
 
-  /* ── FOOTER ── */
-  footer {
-    margin-top: 60px;
-    padding-top: 26px;
-    border-top: 1px solid var(--line);
+  .contact-card {
+    background: var(--forest);
+    color: var(--cream);
+    border-radius: 10px;
+    padding: 36px 30px;
     text-align: center;
-    font-size: 12px;
-    color: var(--ink-dim);
   }
-  footer a { color: var(--forest); font-weight: 600; text-decoration: none; }
+  .contact-card h2.section-title { color: var(--gold-lt); justify-content: center; }
+  .contact-card h2.section-title::after { display: none; }
+  .contact-links {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 22px;
+    margin-top: 6px; font-size: 13.5px;
+  }
+  .contact-links a { color: var(--gold-lt); text-decoration: none; font-weight: 500; }
+  .contact-links a:hover { text-decoration: underline; }
+  .contact-links span { color: rgba(250,247,240,0.85); }
 
-  @media (max-width: 520px) {
-    .header-inner { flex-direction: column; text-align: center; }
-    .contact-row { justify-content: center; text-align: center; }
+  footer {
+    text-align: center;
+    padding: 26px 24px 50px;
+    font-size: 11.5px;
+    color: var(--ink-dim);
   }
 </style>
 </head>
 <body>
 
-  <header>
-    <div class="header-inner">
-      <img class="headshot" src="photo.jpg" alt="Alvin G. Salazar">
-      <div class="header-text">
-        <h1>Alvin G. Salazar</h1>
-        <div class="role-line">Accounts Receivable – Others · Finance Division, University of San Carlos</div>
+  <div class="dot-nav" id="dotNav">
+    <button data-target="home" class="active" aria-label="Home"></button>
+    <button data-target="about" aria-label="About"></button>
+    <button data-target="experience" aria-label="Experience"></button>
+    <button data-target="systems" aria-label="Systems Built"></button>
+    <button data-target="contact" aria-label="Contact"></button>
+  </div>
+
+  <section class="hero" id="home">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-photo-frame">
+        <img src="photo.jpg" alt="Alvin G. Salazar">
       </div>
+      <div class="hero-eyebrow">Finance Division · University of San Carlos</div>
+      <h1>Alvin G. Salazar</h1>
+      <div class="hero-role">Accounts Receivable – Others</div>
+      <div class="hero-tagline">Ten years keeping the numbers honest — and building the systems that keep them that way.</div>
     </div>
-    <div class="contact-row">
-      <span>✉ <a href="mailto:asalazar@usc.edu.ph">asalazar@usc.edu.ph</a></span>
-      <span>☎ 09471503186</span>
-      <span>☎ (032) 2300100 loc. 178</span>
-      <span>in <a href="https://www.linkedin.com/in/alvin-salazar-157866109" target="_blank" rel="noopener">linkedin.com/in/alvin-salazar</a></span>
-    </div>
-  </header>
+    <div class="scroll-cue">⌄</div>
+  </section>
 
   <div class="wrap">
 
-    <section>
-      <h2 class="section-title">Summary</h2>
+    <section class="block reveal" id="about">
+      <h2 class="section-title">About</h2>
       <p class="summary">
-        Ten years managing Accounts Receivable – Others at the University of San Carlos, reporting directly to the Comptroller under the Finance Division. Core responsibility spans the full lifecycle of Cash Advances to Employees and the Student Group Personal Insurance program — from records accuracy and financial compliance to building the internal systems that keep both processes centralized, auditable, and current.
+        I manage Accounts Receivable – Others at the University of San Carlos, reporting directly to the Comptroller under the Finance Division. My core responsibility spans the full lifecycle of Cash Advances to Employees and the Student Group Personal Insurance program — from day-to-day records accuracy to the systems that keep both processes centralized, auditable, and current. Where the work called for better tools than what existed, I built them myself.
       </p>
     </section>
 
-    <section>
+    <section class="block reveal" id="experience">
       <h2 class="section-title">Experience</h2>
       <div class="exp-card">
         <div class="exp-title">Accounts Receivable – Others</div>
@@ -265,7 +330,7 @@
       </div>
     </section>
 
-    <section>
+    <section class="block reveal" id="systems">
       <h2 class="section-title">Systems Built</h2>
       <div class="project-grid">
         <div class="project-card">
@@ -283,7 +348,7 @@
       </div>
     </section>
 
-    <section>
+    <section class="block reveal">
       <h2 class="section-title">Focus Areas</h2>
       <div class="skills-wrap">
         <span class="skill-pill">Accounts Receivable</span>
@@ -296,11 +361,64 @@
       </div>
     </section>
 
+    <section class="block reveal" id="contact">
+      <div class="contact-card">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-links">
+          <a href="mailto:asalazar@usc.edu.ph">asalazar@usc.edu.ph</a>
+          <span>09471503186</span>
+          <span>(032) 2300100 loc. 178</span>
+          <a href="https://www.linkedin.com/in/alvin-salazar-157866109" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </section>
+
   </div>
 
-  <footer>
-    University of San Carlos · Finance Division &nbsp;·&nbsp; <a href="mailto:asalazar@usc.edu.ph">asalazar@usc.edu.ph</a>
-  </footer>
+  <footer>University of San Carlos · Finance Division</footer>
+
+  <script>
+    // Scroll-reveal animation
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+
+    // Subtle parallax on hero background
+    const heroBg = document.getElementById('heroBg');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          heroBg.style.transform = `scale(1.15) translateY(${y * 0.12}px)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // Side dot nav — active state + click to scroll
+    const sectionIds = ['home', 'about', 'experience', 'systems', 'contact'];
+    const dots = document.querySelectorAll('.dot-nav button');
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        document.getElementById(dot.dataset.target).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          dots.forEach(d => d.classList.toggle('active', d.dataset.target === entry.target.id));
+        }
+      });
+    }, { threshold: 0.5 });
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) sectionObserver.observe(el);
+    });
+  </script>
 
 </body>
 </html>
