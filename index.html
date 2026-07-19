@@ -3,216 +3,310 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alvin Salazar</title>
+<title>Alvin G. Salazar — Accounts Receivable, University of San Carlos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blush:   #F3C6D9;
-    --lilac:   #C9B6E0;
-    --dusk:    #8E8FC7;
-    --plum:    #2E1A38;
-    --cream:   #FFF8F2;
-    --cream-dim: rgba(255,248,242,0.7);
+    --forest:   #1B3A2B;
+    --forest-2: #234A37;
+    --gold:     #C9A227;
+    --cream:    #FAF7F0;
+    --paper:    #FFFFFF;
+    --ink:      #24261F;
+    --ink-dim:  #5C5F53;
+    --line:     #E4E0D4;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html, body {
-    height: 100%;
-    overflow: hidden;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    position: relative;
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 56px 24px 44px;
+  }
+
+  .header-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .monogram {
+    flex: none;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Quicksand', sans-serif;
-    color: var(--plum);
-    background: linear-gradient(180deg, #C9B6E0 0%, #E3B8CE 45%, #F3C6D9 75%, #FBD9C9 100%);
-  }
-
-  /* ── Soft sunset haze blobs ── */
-  .haze {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.55;
-    animation: float 16s ease-in-out infinite;
-  }
-  .haze-1 { width: 420px; height: 420px; background: #F7D8E6; top: -8%; left: -10%; animation-delay: 0s; }
-  .haze-2 { width: 360px; height: 360px; background: #B8A6DE; bottom: -12%; right: -8%; animation-delay: -5s; }
-  .haze-3 { width: 260px; height: 260px; background: #FCE3C9; bottom: 10%; left: 12%; animation-delay: -9s; opacity: 0.4; }
-
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50%      { transform: translate(20px, -16px) scale(1.05); }
-  }
-
-  /* ── Drifting hearts ── */
-  .heart {
-    position: absolute;
-    top: -6%;
-    font-size: 14px;
-    color: rgba(255,255,255,0.55);
-    animation: fall linear infinite;
-    user-select: none;
-  }
-  @keyframes fall {
-    0%   { transform: translate(0, 0) rotate(0deg);   opacity: 0; }
-    12%  { opacity: 0.8; }
-    88%  { opacity: 0.4; }
-    100% { transform: translate(30px, 112vh) rotate(200deg); opacity: 0; }
-  }
-
-  /* ── Polaroid card ── */
-  .polaroid {
-    position: relative;
-    z-index: 2;
-    background: var(--cream);
-    padding: 26px 26px 60px;
-    width: min(310px, 78vw);
-    box-shadow: 0 20px 50px rgba(46,26,56,0.28), 0 4px 12px rgba(46,26,56,0.15);
-    transform: rotate(-3deg);
-    animation: settle 1.2s cubic-bezier(.2,.9,.3,1) 0.15s both;
-  }
-
-  @keyframes settle {
-    from { opacity: 0; transform: rotate(-3deg) translateY(24px) scale(0.96); }
-    to   { opacity: 1; transform: rotate(-3deg) translateY(0) scale(1); }
-  }
-
-  .photo-area {
-    aspect-ratio: 1 / 1;
-    background:
-      radial-gradient(circle at 30% 25%, rgba(255,255,255,0.5), transparent 45%),
-      linear-gradient(160deg, #D9C6EA 0%, #EFC3D6 55%, #F8D9C4 100%);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 14px;
-  }
-
-  /* subtle silhouette scribble, purely decorative — no copyrighted imagery */
-  .scribble-heart {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 26px;
-    height: 26px;
-    opacity: 0.5;
-  }
-
-  .name-cursive {
-    font-family: 'Caveat', cursive;
-    font-weight: 700;
-    font-size: clamp(2.1rem, 8vw, 2.7rem);
-    color: var(--plum);
-    text-align: center;
-    line-height: 1;
-  }
-
-  .caption {
-    margin-top: 16px;
-    text-align: center;
-    font-size: 12.5px;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
     font-weight: 500;
-    color: #6B5A78;
-    letter-spacing: 0.2px;
-    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 1px;
   }
 
-  .tape {
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-2deg);
-    width: 74px;
-    height: 26px;
-    background: rgba(255,255,255,0.55);
-    border: 1px solid rgba(255,255,255,0.7);
-    box-shadow: 0 3px 6px rgba(46,26,56,0.12);
+  .header-text h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(1.7rem, 5vw, 2.3rem);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  .role-line {
+    margin-top: 6px;
+    font-size: 14px;
+    color: rgba(250,247,240,0.8);
+    font-weight: 500;
   }
 
   .contact-row {
-    margin-top: 22px;
-    text-align: center;
+    max-width: 760px;
+    margin: 26px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    font-size: 12.5px;
+    color: rgba(250,247,240,0.88);
+  }
+  .contact-row a { color: var(--gold); text-decoration: none; }
+  .contact-row a:hover { text-decoration: underline; }
+  .contact-row span { display: inline-flex; align-items: center; gap: 6px; }
+
+  /* ── SECTIONS ── */
+  section { margin-top: 46px; }
+
+  h2.section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: var(--forest);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  h2.section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), var(--line) 70%);
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--ink-dim);
+    max-width: 66ch;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 22px 24px;
+  }
+  .exp-title {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--forest);
+  }
+  .exp-org {
+    font-size: 13px;
+    color: var(--ink-dim);
+    margin-top: 2px;
+  }
+  .exp-meta {
     font-size: 11.5px;
-    color: var(--cream-dim);
-    position: relative;
-    z-index: 2;
-    opacity: 0;
-    animation: rise 1s ease-out 0.9s forwards;
-  }
-  .contact-row a {
-    color: var(--plum);
-    background: rgba(255,255,255,0.55);
-    padding: 3px 10px;
-    border-radius: 20px;
-    text-decoration: none;
+    color: var(--gold);
     font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    margin-top: 8px;
   }
-
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .exp-desc {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--ink-dim);
   }
+  .exp-desc ul { padding-left: 18px; margin-top: 8px; }
+  .exp-desc li { margin-bottom: 6px; }
 
-  .stack {
-    position: relative;
-    z-index: 2;
+  /* ── PROJECTS ── */
+  .project-grid {
     display: flex;
     flex-direction: column;
+    gap: 14px;
+  }
+  .project-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 18px 22px;
+  }
+  .project-name {
+    font-family: 'Fraunces', serif;
+    font-size: 15.5px;
+    font-weight: 500;
+    color: var(--forest);
+    display: flex;
     align-items: center;
+    gap: 8px;
+  }
+  .project-tag {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    background: var(--forest);
+    color: var(--gold);
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .project-desc {
+    margin-top: 8px;
+    font-size: 13.5px;
+    color: var(--ink-dim);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .haze, .heart { animation: none !important; }
-    .polaroid, .contact-row { animation: none !important; opacity: 1 !important; transform: rotate(-3deg) !important; }
+  /* ── SKILLS ── */
+  .skills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+  .skill-pill {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--forest);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 7px 14px;
+    border-radius: 20px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 60px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-dim);
+  }
+  footer a { color: var(--forest); font-weight: 600; text-decoration: none; }
+
+  @media (max-width: 520px) {
+    .header-inner { flex-direction: column; text-align: center; }
+    .contact-row { justify-content: center; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-  <div class="haze haze-1"></div>
-  <div class="haze haze-2"></div>
-  <div class="haze haze-3"></div>
-
-  <div class="stack">
-    <div class="polaroid">
-      <div class="tape"></div>
-      <div class="photo-area">
-        <svg class="scribble-heart" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 27C16 27 2 18.5 2 9.5C2 4.8 5.6 2 9.4 2C12.3 2 14.7 3.8 16 6.3C17.3 3.8 19.7 2 22.6 2C26.4 2 30 4.8 30 9.5C30 18.5 16 27 16 27Z" stroke="#2E1A38" stroke-width="2" stroke-linejoin="round"/>
-        </svg>
-        <div class="name-cursive">Alvin Salazar</div>
+  <header>
+    <div class="header-inner">
+      <div class="monogram">AGS</div>
+      <div class="header-text">
+        <h1>Alvin G. Salazar</h1>
+        <div class="role-line">Accounts Receivable – Others · Finance Division, University of San Carlos</div>
       </div>
-      <div class="caption">pretty, sad, still building something.</div>
     </div>
-
     <div class="contact-row">
-      <a href="mailto:asalazar@usc.edu.ph">asalazar@usc.edu.ph</a>
+      <span>✉ <a href="mailto:asalazar@usc.edu.ph">asalazar@usc.edu.ph</a></span>
+      <span>☎ 09471503186</span>
+      <span>☎ (032) 2300100 loc. 178</span>
+      <span>in <a href="https://www.linkedin.com/in/alvin-salazar-157866109" target="_blank" rel="noopener">linkedin.com/in/alvin-salazar</a></span>
     </div>
+  </header>
+
+  <div class="wrap">
+
+    <section>
+      <h2 class="section-title">Summary</h2>
+      <p class="summary">
+        Ten years managing Accounts Receivable – Others at the University of San Carlos, reporting directly to the Comptroller under the Finance Division. Core responsibility spans the full lifecycle of Cash Advances to Employees and the Student Group Personal Insurance program — from records accuracy and financial compliance to building the internal systems that keep both processes centralized, auditable, and current.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Experience</h2>
+      <div class="exp-card">
+        <div class="exp-title">Accounts Receivable – Others</div>
+        <div class="exp-org">Finance Division · Office of the Comptroller, University of San Carlos</div>
+        <div class="exp-meta">10 Years · Current</div>
+        <div class="exp-desc">
+          <ul>
+            <li>Manage and maintain records for all Cash Advances (Employees) transactions university-wide, ensuring financial accuracy, completeness, and compliance.</li>
+            <li>Oversee monitoring and enrollment for the Student Group Personal Insurance (SGPA) program, including claims tracking from filing through settlement.</li>
+            <li>Report directly to the Comptroller within the Finance Division.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Systems Built</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-name">Claims Management System <span class="project-tag">Internal</span></div>
+          <div class="project-desc">
+            Central platform for monitoring and processing Student Group Personal Insurance claims and enrollment — replacing fragmented spreadsheet tracking with a single, auditable system covering claim intake, settlement tranches, status history, and student-facing status lookup.
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-name">Cash Advance Monitoring &amp; Compliance System <span class="project-tag">Internal</span></div>
+          <div class="project-desc">
+            Automated tracking and record-keeping for all University Cash Advance (Employee) transactions, built to ensure ongoing financial compliance, accuracy, and completeness across the Finance Division.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Focus Areas</h2>
+      <div class="skills-wrap">
+        <span class="skill-pill">Accounts Receivable</span>
+        <span class="skill-pill">Cash Advance Management</span>
+        <span class="skill-pill">Insurance Claims Administration</span>
+        <span class="skill-pill">Financial Compliance</span>
+        <span class="skill-pill">Records Accuracy &amp; Audit Readiness</span>
+        <span class="skill-pill">Process Automation</span>
+        <span class="skill-pill">Internal Systems Development</span>
+      </div>
+    </section>
+
   </div>
 
-  <script>
-    const hearts = ['♡','❀','✿'];
-    const count = 16;
-    for (let i = 0; i < count; i++) {
-      const h = document.createElement('div');
-      h.className = 'heart';
-      h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-      h.style.left = Math.random() * 100 + 'vw';
-      h.style.fontSize = (10 + Math.random() * 10) + 'px';
-      h.style.animationDuration = (10 + Math.random() * 9) + 's';
-      h.style.animationDelay = (Math.random() * 14) + 's';
-      document.body.appendChild(h);
-    }
-  </script>
+  <footer>
+    University of San Carlos · Finance Division &nbsp;·&nbsp; <a href="mailto:asalazar@usc.edu.ph">asalazar@usc.edu.ph</a>
+  </footer>
 
 </body>
 </html>
